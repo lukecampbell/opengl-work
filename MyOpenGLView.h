@@ -10,9 +10,13 @@
 
 @interface MyOpenGLView : NSOpenGLView
 {
-    
+   @private
+       NSArray *gl_extensions; 
 }
 
 - (void) drawRect:(NSRect) bounds;
+- (void) testSomething;
+- (void) initGLExtensions;
+- (BOOL) hasVertexShader;
 
 @end
