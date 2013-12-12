@@ -7,16 +7,18 @@
 //
 
 #import "MyOpenGLView.h"
+#
 #include <OpenGL/gl.h>
 
 #pragma mark Vertex Buffers
 
-static double vertex_buffer[] = {
+static GLfloat vertex_buffer[] = {
    -0.6, 0.0, 0.0,
     0.6, 0.0, 0.0,
     0.0, 0.6, 0.0,
     0.6, -0.6, 0.0,
 };
+
 
 
 #pragma mark GL Drawing
@@ -25,20 +27,6 @@ static double vertex_buffer[] = {
  * void drawAnObject(void)
  * Renders the scene using GL
  */
-static void drawAnObject ()
-{
-    //glColor3f(1.0f, 0.85f, 0.35f);
-    size_t i=0;
-    size_t array_len = sizeof(vertex_buffer)/sizeof(vertex_buffer[0]);
-    double *v = NULL;
-    glBegin(GL_TRIANGLE_STRIP);
-    glColor3f(1.0f, 0.85f, 0.35f);
-    for(i=0;i<array_len/3;i++) {
-        v = &vertex_buffer[i*3];
-        glVertex3f(v[0], v[1], v[2]);
-    }
-    glEnd();
-}
 
 @implementation MyOpenGLView
 
@@ -48,9 +36,10 @@ static void drawAnObject ()
  */
 - (void) drawRect:(NSRect)bounds {
     [self initGLExtensions];
+    [self initShaders];
     glClearColor(1, 1, 1, 0);
     glClear(GL_COLOR_BUFFER_BIT);
-    drawAnObject();
+    [self drawAnObject];
     glFlush();
 }
 
@@ -85,6 +74,25 @@ static void drawAnObject ()
 - (void) testSomething {
     BOOL has_vertex_shader = [self hasVertexShader];
     NSLog(@"Has Vertex Shader: %@", has_vertex_shader ? @"Yes" : @"No");
+}
+
+- (void) initShaders {
+    shader = [[Shader alloc] initWithShadersInAppBundle:@"Simple"];
+    NSLog(@"Shaders Loaded");
+}
+
+- (void) drawAnObject {
+    //glColor3f(1.0f, 0.85f, 0.35f);
+    size_t i=0;
+    size_t array_len = sizeof(vertex_buffer)/sizeof(vertex_buffer[0]);
+    GLuint vbuffer;
+    GLint vpos;
+    GLint vcolor;
+    glGenBuffers(1, &vbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vbuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_buffer), vertex_buffer, GL_STATIC_DRAW);
+    glDrawArrays(GL_TRIANGLE_STRIP,0,array_len);
+    vpos = [shader getAttribLocation: "aVertexPosition"];
 }
 @end
 

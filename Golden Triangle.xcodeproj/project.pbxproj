@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A30CDBBA185800BD0030A085 /* Shader.m in Sources */ = {isa = PBXBuildFile; fileRef = A30CDBB9185800BD0030A085 /* Shader.m */; };
+		A30CDBBD1858047A0030A085 /* Simple.vs in Sources */ = {isa = PBXBuildFile; fileRef = A30CDBBC1858047A0030A085 /* Simple.vs */; };
+		A30CDBBF1858048D0030A085 /* Simple.fs in Sources */ = {isa = PBXBuildFile; fileRef = A30CDBBE1858048D0030A085 /* Simple.fs */; };
+		A30CDBC0185812560030A085 /* Simple.vs in Resources */ = {isa = PBXBuildFile; fileRef = A30CDBBC1858047A0030A085 /* Simple.vs */; };
+		A30CDBC1185812560030A085 /* Simple.fs in Resources */ = {isa = PBXBuildFile; fileRef = A30CDBBE1858048D0030A085 /* Simple.fs */; };
+		A30CDBC4185814400030A085 /* Mat4.m in Sources */ = {isa = PBXBuildFile; fileRef = A30CDBC3185814400030A085 /* Mat4.m */; };
+		A30CDBC6185815750030A085 /* TestMat4.m in Sources */ = {isa = PBXBuildFile; fileRef = A30CDBC5185815750030A085 /* TestMat4.m */; };
 		A37A607D1847ACF4005CC02C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A37A607C1847ACF4005CC02C /* Cocoa.framework */; };
 		A37A60871847ACF4005CC02C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A37A60851847ACF4005CC02C /* InfoPlist.strings */; };
 		A37A60891847ACF4005CC02C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A37A60881847ACF4005CC02C /* main.m */; };
@@ -33,6 +40,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A30CDBB8185800BD0030A085 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
+		A30CDBB9185800BD0030A085 /* Shader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shader.m; sourceTree = "<group>"; };
+		A30CDBBC1858047A0030A085 /* Simple.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Simple.vs; sourceTree = "<group>"; };
+		A30CDBBE1858048D0030A085 /* Simple.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Simple.fs; sourceTree = "<group>"; };
+		A30CDBC2185814400030A085 /* Mat4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mat4.h; sourceTree = "<group>"; };
+		A30CDBC3185814400030A085 /* Mat4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mat4.m; sourceTree = "<group>"; };
+		A30CDBC5185815750030A085 /* TestMat4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestMat4.m; path = "../Golden Triangle/TestMat4.m"; sourceTree = "<group>"; };
 		A37A60791847ACF4005CC02C /* Golden Triangle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Golden Triangle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A37A607C1847ACF4005CC02C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A37A607F1847ACF4005CC02C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -79,9 +93,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A30CDBB7185800BD0030A085 /* Shader */ = {
+			isa = PBXGroup;
+			children = (
+				A30CDBB8185800BD0030A085 /* Shader.h */,
+				A30CDBB9185800BD0030A085 /* Shader.m */,
+			);
+			name = Shader;
+			path = "Golden Triangle/Shader";
+			sourceTree = "<group>";
+		};
+		A30CDBBB185804440030A085 /* Simple */ = {
+			isa = PBXGroup;
+			children = (
+				A30CDBBC1858047A0030A085 /* Simple.vs */,
+				A30CDBBE1858048D0030A085 /* Simple.fs */,
+			);
+			name = Simple;
+			sourceTree = "<group>";
+		};
+		A30CDBC7185818E00030A085 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				A30CDBC2185814400030A085 /* Mat4.h */,
+				A30CDBC3185814400030A085 /* Mat4.m */,
+			);
+			name = Math;
+			path = "Golden Triangle";
+			sourceTree = "<group>";
+		};
 		A37A60701847ACF3005CC02C = {
 			isa = PBXGroup;
 			children = (
+				A30CDBC7185818E00030A085 /* Math */,
+				A30CDBBB185804440030A085 /* Simple */,
+				A30CDBB7185800BD0030A085 /* Shader */,
 				A37A60821847ACF4005CC02C /* Golden Triangle */,
 				A37A60A01847ACF4005CC02C /* Golden TriangleTests */,
 				A37A607B1847ACF4005CC02C /* Frameworks */,
@@ -148,6 +194,7 @@
 		A37A60A01847ACF4005CC02C /* Golden TriangleTests */ = {
 			isa = PBXGroup;
 			children = (
+				A30CDBC5185815750030A085 /* TestMat4.m */,
 				A37A60A61847ACF4005CC02C /* Golden_TriangleTests.m */,
 				A37A60A11847ACF4005CC02C /* Supporting Files */,
 			);
@@ -239,6 +286,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A30CDBC0185812560030A085 /* Simple.vs in Resources */,
+				A30CDBC1185812560030A085 /* Simple.fs in Resources */,
 				A37A60871847ACF4005CC02C /* InfoPlist.strings in Resources */,
 				A37A60951847ACF4005CC02C /* Images.xcassets in Resources */,
 				A37A608D1847ACF4005CC02C /* Credits.rtf in Resources */,
@@ -262,8 +311,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A37A60901847ACF4005CC02C /* AppDelegate.m in Sources */,
+				A30CDBBD1858047A0030A085 /* Simple.vs in Sources */,
 				A37A60891847ACF4005CC02C /* main.m in Sources */,
+				A30CDBBA185800BD0030A085 /* Shader.m in Sources */,
+				A30CDBBF1858048D0030A085 /* Simple.fs in Sources */,
 				A37A60B41847AD7D005CC02C /* MyOpenGLView.m in Sources */,
+				A30CDBC4185814400030A085 /* Mat4.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A37A60A71847ACF4005CC02C /* Golden_TriangleTests.m in Sources */,
+				A30CDBC6185815750030A085 /* TestMat4.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +528,7 @@
 				A37A60AC1847ACF4005CC02C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A37A60AD1847ACF4005CC02C /* Build configuration list for PBXNativeTarget "Golden TriangleTests" */ = {
 			isa = XCConfigurationList;
@@ -482,6 +537,7 @@
 				A37A60AF1847ACF4005CC02C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
