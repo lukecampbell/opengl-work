@@ -15,11 +15,28 @@
 static GLfloat vertex_buffer[] = {
    -0.6, 0.0, 0.0,
     0.6, 0.0, 0.0,
-    0.0, 0.6, 0.0,
-    0.6, -0.6, 0.0,
+    0.0, 0.6, 0.0
 };
 
+static GLfloat color_buffer[] = {
+    0., 1., 0., 1.,
+    0., 1., 0., 1.,
+    0., 1., 0., 1.,
+};
 
+static GLfloat pMatrix[] = {
+    2.4142136573791504,                  0,                    0,  0,
+                     0, 2.4142136573791504,                    0,  0,
+                     0,                  0,  -1.0020020008087158, -1,
+                     0,                  0, -0.20020020008087158,  0
+};
+
+static GLfloat mvMatrix[] = {
+    1., 0., 0., 0.,
+    0., 1., 0., 0.,
+    0., 0., 1., 0.,
+    0., 0., -7., 1.
+};
 
 #pragma mark GL Drawing
 
@@ -37,8 +54,9 @@ static GLfloat vertex_buffer[] = {
 - (void) drawRect:(NSRect)bounds {
     [self initGLExtensions];
     [self initShaders];
-    glClearColor(1, 1, 1, 0);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(0., 0., 0., 1.);
+    glEnable(GL_DEPTH_TEST);
     [self drawAnObject];
     glFlush();
 }
@@ -78,21 +96,41 @@ static GLfloat vertex_buffer[] = {
 
 - (void) initShaders {
     shader = [[Shader alloc] initWithShadersInAppBundle:@"Simple"];
+    glUseProgram([shader programObject]);
     NSLog(@"Shaders Loaded");
 }
 
 - (void) drawAnObject {
     //glColor3f(1.0f, 0.85f, 0.35f);
-    size_t i=0;
-    size_t array_len = sizeof(vertex_buffer)/sizeof(vertex_buffer[0]);
     GLuint vbuffer;
     GLint vpos;
     GLint vcolor;
+    GLint umvmat;
+    GLint upmat;
     glGenBuffers(1, &vbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vbuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_buffer), vertex_buffer, GL_STATIC_DRAW);
-    glDrawArrays(GL_TRIANGLE_STRIP,0,array_len);
     vpos = [shader getAttribLocation: "aVertexPosition"];
+    glEnableVertexAttribArray(vpos);
+
+    glVertexAttribPointer(vpos, 3, GL_FLOAT, false, 0, 0);
+    
+    glGenBuffers(1, &vbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vbuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(color_buffer), color_buffer, GL_STATIC_DRAW);
+    vcolor = [shader getAttribLocation: "aVertexColor"];
+
+    glVertexAttribPointer(vcolor, 4, GL_FLOAT, false, 0, 0);
+    glEnableVertexAttribArray(vcolor);
+
+    umvmat = [shader getUniformLocation: "uMVMatrix"];
+    upmat = [shader getUniformLocation: "uPMatrix"];
+
+    glUniformMatrix4fv(umvmat, 1, false, mvMatrix);
+    glUniformMatrix4fv(upmat, 1, false, pMatrix);
+
+
+    glDrawArrays(GL_TRIANGLE_STRIP,0,3);
 }
 @end
 
