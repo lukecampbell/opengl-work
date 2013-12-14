@@ -13,14 +13,15 @@
 @interface MyOpenGLView : NSOpenGLView
 {
    @private
+       BOOL initialized;
        NSArray *gl_extensions; 
        Shader *shader;
 }
+- (NSOpenGLPixelFormat *) pixelFormat;
 
+- (void) initGL: (NSRect) theFrame;
 - (void) drawRect:(NSRect) bounds;
-- (void) testSomething;
 - (void) initGLExtensions;
-- (BOOL) hasVertexShader;
 - (void) initShaders;
-- (void) drawAnObject;
+- (void) drawAnObject: (NSRect) bounds;
 @end

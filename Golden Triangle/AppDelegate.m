@@ -6,13 +6,15 @@
 //  Copyright (c) 2013 Lucas Campbell. All rights reserved.
 //
 
+
 #import "AppDelegate.h"
+
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    NSLog(@"Application Finished Loading");
+
 }
 
 - (BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {

@@ -59,35 +59,35 @@
 
 //---------------------------------------------------------------------------------
 
-static GLhandleARB LoadShader(GLenum theShaderType, 
-							  const GLcharARB **theShader, 
+static GLuint LoadShader(GLenum theShaderType, 
+							  const GLchar** theShader, 
 							  GLint *theShaderCompiled) 
 {
-	GLhandleARB shaderObject = NULL;
+    GLuint shaderObject = 0;
 	
 	if( theShader != NULL ) 
 	{
 		GLint infoLogLength = 0;
 		
-		shaderObject = glCreateShaderObjectARB(theShaderType);
+		shaderObject = glCreateShader(theShaderType);
 		
-		glShaderSourceARB(shaderObject, 1, theShader, NULL);
-		glCompileShaderARB(shaderObject);
+		glShaderSource(shaderObject, 1, theShader, NULL);
+		glCompileShader(shaderObject);
 		
-		glGetObjectParameterivARB(shaderObject, 
-								  GL_OBJECT_INFO_LOG_LENGTH_ARB, 
+		glGetShaderiv(shaderObject, 
+								  GL_INFO_LOG_LENGTH, 
 								  &infoLogLength);
 		
 		if( infoLogLength > 0 ) 
 		{
-			GLcharARB *infoLog = (GLcharARB *)malloc(infoLogLength);
+			GLchar* infoLog = (GLchar*) malloc(infoLogLength);
 			
 			if( infoLog != NULL )
 			{
-				glGetInfoLogARB(shaderObject, 
-								infoLogLength, 
-								&infoLogLength, 
-								infoLog);
+				glGetShaderInfoLog(shaderObject, 
+								   infoLogLength, 
+								   &infoLogLength, 
+								   infoLog);
 				
 				NSLog(@">> Shader compile log:\n%s\n", infoLog);
 				
@@ -95,13 +95,13 @@ static GLhandleARB LoadShader(GLenum theShaderType,
 			} // if
 		} // if
 		
-		glGetObjectParameterivARB(shaderObject, 
-								  GL_OBJECT_COMPILE_STATUS_ARB, 
-								  theShaderCompiled);
+		glGetShaderiv(shaderObject, 
+                      GL_COMPILE_STATUS, 
+                      theShaderCompiled);
 		
 		if( *theShaderCompiled == 0 )
 		{
-			NSLog(@">> Failed to compile shader %s\n", theShader);
+			NSLog(@">> Failed to compile shader %s\n", (char *)theShader);
 		} // if
 	} // if
 	else 
@@ -114,24 +114,24 @@ static GLhandleARB LoadShader(GLenum theShaderType,
 
 //---------------------------------------------------------------------------------
 
-static void LinkProgram(GLhandleARB programObject, 
+static void LinkProgram(GLuint programObject, 
 						GLint *theProgramLinked) 
 {
 	GLint  infoLogLength = 0;
 	
-	glLinkProgramARB(programObject);
+	glLinkProgram(programObject);
 	
-	glGetObjectParameterivARB(programObject, 
-							  GL_OBJECT_INFO_LOG_LENGTH_ARB, 
-							  &infoLogLength);
+	glGetProgramiv(programObject, 
+                   GL_INFO_LOG_LENGTH, 
+                   &infoLogLength);
 	
 	if( infoLogLength >  0 ) 
 	{
-		GLcharARB *infoLog = (GLcharARB *)malloc(infoLogLength);
+		GLchar *infoLog = (GLchar*) malloc(infoLogLength);
 		
 		if( infoLog != NULL)
 		{
-			glGetInfoLogARB(programObject, 
+			glGetProgramInfoLog(programObject, 
 							infoLogLength, 
 							&infoLogLength, 
 							infoLog);
@@ -142,13 +142,13 @@ static void LinkProgram(GLhandleARB programObject,
 		} // if
 	} // if
 	
-	glGetObjectParameterivARB(programObject, 
-							  GL_OBJECT_LINK_STATUS_ARB, 
-							  theProgramLinked);
+	glGetProgramiv(programObject, 
+                   GL_LINK_STATUS, 
+                   theProgramLinked);
 	
 	if( *theProgramLinked == 0 )
 	{
-		NSLog(@">> Failed to link program 0x%lx\n", (GLubyte *)&programObject);
+		NSLog(@">> Failed to link program 0x%lx\n", (long int)&programObject);
 	} // if
 } // LinkProgram
 
@@ -164,17 +164,17 @@ static void LinkProgram(GLhandleARB programObject,
 
 //---------------------------------------------------------------------------------
 
-- (GLcharARB *) getShaderSourceFromResource:(NSString *)theShaderResourceName 
+- (GLchar*) getShaderSourceFromResource:(NSString *)theShaderResourceName 
 								  extension:(NSString *)theExtension
 {
 	NSBundle  *appBundle = [NSBundle mainBundle];
 	
 	NSString  *shaderTempSource = [appBundle pathForResource:theShaderResourceName 
 													  ofType:theExtension];
-	GLcharARB *shaderSource = NULL;
+	GLchar *shaderSource = NULL;
 	
 	shaderTempSource = [NSString stringWithContentsOfFile:shaderTempSource encoding:NSUTF8StringEncoding error: nil];
-	shaderSource     = (GLcharARB *)[shaderTempSource cStringUsingEncoding:NSASCIIStringEncoding];
+	shaderSource     = (GLchar*) [shaderTempSource cStringUsingEncoding:NSASCIIStringEncoding];
 	
 	return  shaderSource;
 } // getShaderSourceFromResource
@@ -197,11 +197,11 @@ static void LinkProgram(GLhandleARB programObject,
 
 //---------------------------------------------------------------------------------
 
-- (GLhandleARB) loadShader:(GLenum)theShaderType 
-			  shaderSource:(const GLcharARB **)theShaderSource
+- (GLuint) loadShader:(GLenum)theShaderType 
+			  shaderSource:(const GLchar**) theShaderSource
 {
-	GLint       shaderCompiled = 0;
-	GLhandleARB shaderHandle   = LoadShader(theShaderType, 
+	GLint  shaderCompiled = 0;
+	GLuint shaderHandle   = LoadShader(theShaderType, 
 											theShaderSource, 
 											&shaderCompiled);
 	
@@ -209,8 +209,8 @@ static void LinkProgram(GLhandleARB programObject,
 	{
 		if( shaderHandle ) 
 		{
-			glDeleteObjectARB(shaderHandle);
-			shaderHandle = NULL;
+			glDeleteShader(shaderHandle);
+			shaderHandle = 0 ;
 		} // if
 	} // if
 	
@@ -219,28 +219,28 @@ static void LinkProgram(GLhandleARB programObject,
 
 //---------------------------------------------------------------------------------
 
-- (BOOL) newProgramObject:(GLhandleARB)theVertexShader  
-	 fragmentShaderHandle:(GLhandleARB)theFragmentShader
+- (BOOL) newProgramObject:(GLuint) theVertexShader  
+	 fragmentShaderHandle:(GLuint) theFragmentShader
 {
 	GLint programLinked = 0;
 	
 	// Create a program object and link both shaders
 	
-	programObject = glCreateProgramObjectARB();
+	programObject = glCreateProgram();
 	
-	glAttachObjectARB(programObject, theVertexShader);
-	glDeleteObjectARB(theVertexShader);   // Release
+	glAttachShader(programObject, theVertexShader);
+	glDeleteShader(theVertexShader);   // Release
 	
-	glAttachObjectARB(programObject, theFragmentShader);
-	glDeleteObjectARB(theFragmentShader); // Release
+	glAttachShader(programObject, theFragmentShader);
+	glDeleteShader(theFragmentShader); // Release
 	
 	LinkProgram(programObject, &programLinked);
 	
 	if( !programLinked ) 
 	{
-		glDeleteObjectARB(programObject);
+		glDeleteProgram(programObject);
 		
-		programObject = NULL;
+		programObject = 0;
 		
 		return NO;
 	} // if
@@ -256,19 +256,19 @@ static void LinkProgram(GLhandleARB programObject,
 	
 	// Load and compile both shaders
 	
-	GLhandleARB vertexShader = [self loadShader:GL_VERTEX_SHADER_ARB 
+	GLuint vertexShader = [self loadShader:GL_VERTEX_SHADER 
 								   shaderSource:&vertexShaderSource];
 	
 	// Ensure vertex shader compiled
 	
-	if( vertexShader != NULL )
+	if( vertexShader != 0 )
 	{
-		GLhandleARB fragmentShader = [self loadShader:GL_FRAGMENT_SHADER_ARB 
+		GLuint fragmentShader = [self loadShader:GL_FRAGMENT_SHADER 
 										 shaderSource:&fragmentShaderSource];
 		
 		// Ensure fragment shader compiled
 		
-		if( fragmentShader != NULL ) 
+		if( fragmentShader != 0 ) 
 		{
 			// Create a program object and link both shaders
 			
@@ -330,9 +330,9 @@ static void LinkProgram(GLhandleARB programObject,
 	
 	if( programObject )
 	{
-		glDeleteObjectARB(programObject);
+		glDeleteProgram(programObject);
 		
-		programObject = NULL;
+		programObject = 0;
 	} // if
 	
 	//Dealloc the superclass
@@ -345,7 +345,7 @@ static void LinkProgram(GLhandleARB programObject,
 
 //---------------------------------------------------------------------------------
 
-- (GLhandleARB) programObject
+- (GLuint) programObject
 {
 	return  programObject;
 } // programObject
@@ -356,10 +356,10 @@ static void LinkProgram(GLhandleARB programObject,
 
 //---------------------------------------------------------------------------------
 
-- (GLint) getUniformLocation:(const GLcharARB *)theUniformName
+- (GLint) getUniformLocation:(const GLchar *)theUniformName
 {
-	GLint uniformLoacation = glGetUniformLocationARB(programObject, 
-													 theUniformName);
+	GLint uniformLoacation = glGetUniformLocation(programObject, 
+                                                  theUniformName);
 	
 	if( uniformLoacation == -1 ) 
 	{
@@ -369,8 +369,9 @@ static void LinkProgram(GLhandleARB programObject,
 	return uniformLoacation;
 } // getUniformLocation
 
-- (GLint) getAttribLocation: (const GLcharARB *)theAttribName {
-    GLint attribLocation = glGetAttribLocationARB(programObject, theAttribName);
+- (GLint) getAttribLocation: (const GLchar*) theAttribName {
+    GLint attribLocation = glGetAttribLocation(programObject, 
+                                               theAttribName);
     if(attribLocation == -1 ) {
         NSLog(@">> Warning: No such attrib named \"%s\"\n", theAttribName);
         

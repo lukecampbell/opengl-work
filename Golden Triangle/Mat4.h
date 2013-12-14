@@ -17,7 +17,10 @@
 @property (readonly) GLfloat *floats;
 - (void) identity;
 - (NSString *) toString;
-- (void) perspective: (GLfloat) fovy aspect: (GLfloat) aspect near: (GLfloat) near far: (GLfloat) far;
+- (void) perspective: (GLfloat) fovy
+              aspect: (GLfloat) aspect
+                near: (GLfloat) near
+                 far: (GLfloat) far;
 - (Mat4*) clone;
 - (void) transpose;
 - (id) initFromFloats: (GLfloat *)arr;

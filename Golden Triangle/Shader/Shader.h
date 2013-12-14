@@ -65,18 +65,18 @@
 @interface Shader : NSObject
 {
 	@private
-		const GLcharARB    *fragmentShaderSource;		// the GLSL source for the fragment Shader
-		const GLcharARB    *vertexShaderSource;			// the GLSL source for the vertex Shader
-		GLhandleARB		    programObject;				// the program object
+		const GLchar    *fragmentShaderSource;		// the GLSL source for the fragment Shader
+		const GLchar    *vertexShaderSource;			// the GLSL source for the vertex Shader
+		GLuint		    programObject;				// the program object
 } // Shader
 
 - (id) initWithShadersInAppBundle:(NSString *)theShadersName;
 
-- (GLhandleARB) programObject;
+- (GLuint) programObject;
 
-- (GLint) getUniformLocation:(const GLcharARB *)theUniformName;
+- (GLint) getUniformLocation:(const GLchar*) theUniformName;
 
-- (GLint) getAttribLocation:(const GLcharARB *)theAttribName;
+- (GLint) getAttribLocation:(const GLchar*) theAttribName;
 
 @end
 

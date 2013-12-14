@@ -7,36 +7,25 @@
 //
 
 #import "MyOpenGLView.h"
-#
+#import "Mat4.h"
 #include <OpenGL/gl.h>
 
 #pragma mark Vertex Buffers
 
 static GLfloat vertex_buffer[] = {
-   -0.6, 0.0, 0.0,
-    0.6, 0.0, 0.0,
-    0.0, 0.6, 0.0
+    -1.0, -1.0, 0.0,
+    -1.0,  1.0, 0.0,
+     1.0, -1.0, 0.0,
+     1.0,  1.0, 0.0
 };
 
 static GLfloat color_buffer[] = {
-    0., 1., 0., 1.,
-    0., 1., 0., 1.,
-    0., 1., 0., 1.,
-};
-
-static GLfloat pMatrix[] = {
-    2.4142136573791504,                  0,                    0,  0,
-                     0, 2.4142136573791504,                    0,  0,
-                     0,                  0,  -1.0020020008087158, -1,
-                     0,                  0, -0.20020020008087158,  0
-};
-
-static GLfloat mvMatrix[] = {
     1., 0., 0., 0.,
-    0., 1., 0., 0.,
-    0., 0., 1., 0.,
-    0., 0., -7., 1.
+    1., 1., 1., 1.,
+    1., 1., 1., 1.,
+    1., 0., 0., 1.
 };
+
 
 #pragma mark GL Drawing
 
@@ -52,12 +41,18 @@ static GLfloat mvMatrix[] = {
  * Initializes the context, sets and renders the scene
  */
 - (void) drawRect:(NSRect)bounds {
-    [self initGLExtensions];
-    [self initShaders];
+    if(!initialized) {
+        [self initGL: bounds];
+    }
+    NSLog(@"Drawing");
+    GLsizei w = NSWidth(bounds),
+            h = NSHeight(bounds);
+    NSLog(@"%d %d", w,h);
+    glViewport(0, 0, w, h);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(0., 0., 0., 1.);
     glEnable(GL_DEPTH_TEST);
-    [self drawAnObject];
+    [self drawAnObject: bounds];
     glFlush();
 }
 
@@ -67,11 +62,27 @@ static GLfloat mvMatrix[] = {
 -(BOOL)resignFirstResponder { return YES; }
 -(void)awakeFromNib {
     [[self window] setAcceptsMouseMovedEvents:YES];
+    initialized = NO;
+}
+
+- (void) initGL: (NSRect) theFrame {
+    [self initGLExtensions];
+    [self initShaders];
+    initialized = YES;
 }
 
 /* Handles the mouseDown event in the context */
 - (void)mouseDown:(NSEvent *)theEvent {
-    NSLog(@"Has Shader: %@", [self hasVertexShader] ? @"Yes" : @"No");
+
+}
+
+- (id) initWithFrame:(NSRect)frameRect {
+    self = [super initWithFrame:frameRect];
+    if(self) {
+        NSLog(@"NSOpenGL initializatio");
+        [self setFrameSize: frameRect.size];
+    }
+    return self;
 }
 
 /* Initializes gl_extensions list with all the GL_EXTENSIONS available */
@@ -82,31 +93,24 @@ static GLfloat mvMatrix[] = {
 
 }
 
-/* Do we have the GL_ARB_vertex_shader extension? */
-- (BOOL) hasVertexShader {
-    return [gl_extensions containsObject: @"GL_ARB_vertex_shader"];
-}
-
-
-/* Debugging */
-- (void) testSomething {
-    BOOL has_vertex_shader = [self hasVertexShader];
-    NSLog(@"Has Vertex Shader: %@", has_vertex_shader ? @"Yes" : @"No");
-}
-
 - (void) initShaders {
     shader = [[Shader alloc] initWithShadersInAppBundle:@"Simple"];
     glUseProgram([shader programObject]);
     NSLog(@"Shaders Loaded");
 }
 
-- (void) drawAnObject {
+- (void) drawAnObject: (NSRect) bounds {
     //glColor3f(1.0f, 0.85f, 0.35f);
     GLuint vbuffer;
     GLint vpos;
     GLint vcolor;
-    GLint umvmat;
-    GLint upmat;
+    GLint umvmatAttr;
+    GLint upmatAttr;
+    Mat4 *uMVMatrix = [[Mat4 alloc] init];
+    Mat4 *uPMatrix = [[Mat4 alloc] init];
+    GLfloat translation[] = { 0., 0., -7.0};
+
+    /* -- Set vertex for aVertexPosition -- */
     glGenBuffers(1, &vbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vbuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_buffer), vertex_buffer, GL_STATIC_DRAW);
@@ -115,6 +119,7 @@ static GLfloat mvMatrix[] = {
 
     glVertexAttribPointer(vpos, 3, GL_FLOAT, false, 0, 0);
     
+    /* -- Set color for aVertexColor -- */
     glGenBuffers(1, &vbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vbuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(color_buffer), color_buffer, GL_STATIC_DRAW);
@@ -123,14 +128,22 @@ static GLfloat mvMatrix[] = {
     glVertexAttribPointer(vcolor, 4, GL_FLOAT, false, 0, 0);
     glEnableVertexAttribArray(vcolor);
 
-    umvmat = [shader getUniformLocation: "uMVMatrix"];
-    upmat = [shader getUniformLocation: "uPMatrix"];
+    /* -- Set uniform matrices -- */
+    umvmatAttr = [shader getUniformLocation: "uMVMatrix"];
+    upmatAttr = [shader getUniformLocation: "uPMatrix"];
 
-    glUniformMatrix4fv(umvmat, 1, false, mvMatrix);
-    glUniformMatrix4fv(upmat, 1, false, pMatrix);
+    [uPMatrix perspective: 45.0
+                   aspect: bounds.size.width / bounds.size.height
+                     near: 0.1
+                      far: 100.0];
+
+    [uMVMatrix identity];
+    [uMVMatrix translate: translation];
+    glUniformMatrix4fv(umvmatAttr, 1, false, uMVMatrix.floats);
+    glUniformMatrix4fv(upmatAttr, 1, false, uPMatrix.floats);
 
 
-    glDrawArrays(GL_TRIANGLE_STRIP,0,3);
+    glDrawArrays(GL_TRIANGLE_STRIP,0,4);
 }
 @end
 

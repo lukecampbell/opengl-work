@@ -126,4 +126,26 @@
 
 }
 
+- (void) testPerspective {
+    Mat4 *a = [[Mat4 alloc] init];
+    GLfloat corr[] = {
+        2.4142136573791504, 0, 0, 0, 
+        0, 2.4142136573791504, 0, 0, 
+        0, 0, -1.0020020008087158, -1, 
+        0, 0, -0.20020020008087158, 0
+    };
+
+    [a perspective: 45.0
+            aspect: 1.0
+              near: 0.1
+               far: 100.0 ];
+    Mat4 *comp = [[Mat4 alloc] initFromFloats: corr];
+    NSLog(@"%@", [comp toString]);
+    NSLog(@"%@", [a toString]);
+
+    //XCTAssert([a nearEqual: [[Mat4 alloc] initFromFloats: corr]]);
+}
+
+
+
 @end

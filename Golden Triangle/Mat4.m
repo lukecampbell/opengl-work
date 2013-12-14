@@ -49,23 +49,6 @@
     return mat;
 }
 
-- (void) perspective: (GLfloat) fovy aspect: (GLfloat) aspect near: (GLfloat) near far: (GLfloat) far {
-    GLfloat f = 1.0 / tan(fovy / 2.0);
-    GLfloat nf = 1.0 / (near - far);
-
-    for(int i=0;i<16;i++) {
-        mat[i] = 0.0;
-    }
-
-
-    mat[0] = f / aspect;
-    mat[5] = f;
-    mat[10] = (far + near) * nf;
-    mat[11] = -1;
-    mat[14] = (2 * far * near) * nf;
-
-}
-
 - (Mat4*) clone {
     Mat4 *retval = [[Mat4 alloc] init];
     for(int i=0;i<16;i++) {
@@ -161,6 +144,31 @@
         }
     }
     return YES;
+}
+
+- (void) perspective: (GLfloat) fovy 
+              aspect: (GLfloat) aspect 
+                near: (GLfloat) near 
+                 far: (GLfloat) far {
+    GLfloat f = 1.0 / tanf(fovy / 2.);
+    GLfloat nf = 1.0 / (near - far);
+
+    mat[0] = f / aspect;
+    mat[1] = 0;
+    mat[2] = 0;
+    mat[3] = 0;
+    mat[4] = 0;
+    mat[5] = f;
+    mat[6] = 0;
+    mat[7] = 0;
+    mat[8] = 0;
+    mat[9] = 0;
+    mat[10] = (far + near) * nf;
+    mat[11] = -1;
+    mat[12] = 0;
+    mat[13] = 0;
+    mat[14] = (2 * far * near) * nf;
+    mat[15] = 0;
 }
 
 
