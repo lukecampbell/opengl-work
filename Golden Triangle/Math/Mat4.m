@@ -143,6 +143,7 @@
     [self rotateX: rad];
 }
 
+
 - (BOOL) nearEqual: (Mat4*) other {
     GLfloat *o = other.floats;
     for(int i=0;i<16;i++) {

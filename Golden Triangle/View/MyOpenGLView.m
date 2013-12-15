@@ -113,8 +113,9 @@ static GLfloat color_buffer[] = {
            colorArray: color_buffer];
     Mat4 *camera = [Mat4 new];
     [camera identity];
+    [camera rotateXdeg: 45];
     [camera translateX: 0
-                     Y: 0
+                     Y: -2
                      Z: -7];
     Mat4 *perspective = [Mat4 new];
     [perspective identity];

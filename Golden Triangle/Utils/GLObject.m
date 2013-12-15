@@ -31,7 +31,7 @@
     }
 }
 
-- (void) setArrays: (GLsizei) points
+- (void) setArrays: (GLsizei) p
        vertexArray: (GLfloat *) vArray
         colorArray: (GLfloat *) cArray {
     if(vertexArray) {
@@ -40,12 +40,12 @@
     if(colorArray) {
         free(colorArray);
     }
-    points = points;
+    points = p;
     size_t n = sizeof(GLfloat) * points;
-    vertexArray = malloc(n);
-    colorArray = malloc(n);
-    memcpy(vertexArray, vArray, n);
-    memcpy(colorArray, cArray, n);
+    vertexArray = malloc(n * 3);
+    colorArray = malloc(n * 4);
+    memcpy(vertexArray, vArray, n * 3);
+    memcpy(colorArray, cArray, n * 4);
 }
 
 - (void) drawUsingShader: (Shader *) shader 
@@ -62,7 +62,7 @@
     /* Handle the vertex buffer */
     glGenBuffers(1, &vbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vbuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexArray), vertexArray, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * points * 3, vertexArray, GL_STATIC_DRAW);
     attrib = [shader getAttribLocation: "aVertexPosition"];
     glEnableVertexAttribArray(attrib);
     glVertexAttribPointer(attrib, 3, GL_FLOAT, false, 0, 0);
@@ -70,7 +70,7 @@
     /* Handle the color buffer */
     glGenBuffers(1, &vbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vbuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(colorArray), colorArray, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * points * 4, colorArray, GL_STATIC_DRAW);
     attrib = [shader getAttribLocation: "aVertexColor"];
     glEnableVertexAttribArray(attrib);
     glVertexAttribPointer(attrib, 4, GL_FLOAT, false, 0, 0);
