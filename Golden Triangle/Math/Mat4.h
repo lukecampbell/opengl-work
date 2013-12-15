@@ -26,8 +26,12 @@
 - (id) initFromFloats: (GLfloat *)arr;
 - (BOOL) equals: (Mat4*) other;
 - (void) translate: (GLfloat*) v;
+- (void) translateX: (GLfloat) x
+                  Y: (GLfloat) y
+                  Z: (GLfloat) z;
 - (void) rotateX: (GLfloat) rad;
 - (void) rotateXdeg: (GLfloat) deg;
 - (BOOL) nearEqual: (Mat4*) other;
+- (void) dot: (Mat4*) other;
 
 @end

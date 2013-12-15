@@ -146,6 +146,22 @@
     //XCTAssert([a nearEqual: [[Mat4 alloc] initFromFloats: corr]]);
 }
 
+- (void) testDot {
+    GLfloat af[] = {
+         0,  1,  2,  3,  
+         4,  5,  6,  7,  
+         8,  9, 10, 11, 
+         12, 13, 14, 15
+    };
+    Mat4 *a = [[Mat4 alloc] initFromFloats: af];
+    Mat4 *b = [[Mat4 alloc] initFromFloats: af];
+    [a dot: b];
+    GLfloat corr[] = { 56,  62,  68,  74, 152, 174, 196, 218, 248, 286, 324, 362, 344,
+        398, 452, 506};
+    Mat4 *c = [[Mat4 alloc] initFromFloats: corr];
+
+    XCTAssert([a equals: c]);
+}
 
 
 @end

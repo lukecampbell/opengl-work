@@ -7,27 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A30CDBBA185800BD0030A085 /* Shader.m in Sources */ = {isa = PBXBuildFile; fileRef = A30CDBB9185800BD0030A085 /* Shader.m */; };
-		A30CDBBD1858047A0030A085 /* Simple.vs in Sources */ = {isa = PBXBuildFile; fileRef = A30CDBBC1858047A0030A085 /* Simple.vs */; };
-		A30CDBBF1858048D0030A085 /* Simple.fs in Sources */ = {isa = PBXBuildFile; fileRef = A30CDBBE1858048D0030A085 /* Simple.fs */; };
-		A30CDBC0185812560030A085 /* Simple.vs in Resources */ = {isa = PBXBuildFile; fileRef = A30CDBBC1858047A0030A085 /* Simple.vs */; };
-		A30CDBC1185812560030A085 /* Simple.fs in Resources */ = {isa = PBXBuildFile; fileRef = A30CDBBE1858048D0030A085 /* Simple.fs */; };
-		A30CDBC4185814400030A085 /* Mat4.m in Sources */ = {isa = PBXBuildFile; fileRef = A30CDBC3185814400030A085 /* Mat4.m */; };
-		A30CDBC6185815750030A085 /* TestMat4.m in Sources */ = {isa = PBXBuildFile; fileRef = A30CDBC5185815750030A085 /* TestMat4.m */; };
 		A313CB59185BCF70001D3093 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A313CB58185BCF70001D3093 /* GLUT.framework */; };
+		A313CB61185E18DF001D3093 /* MyOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = A313CB60185E18DF001D3093 /* MyOpenGLView.m */; };
+		A313CB64185E18E9001D3093 /* Mat4.m in Sources */ = {isa = PBXBuildFile; fileRef = A313CB63185E18E9001D3093 /* Mat4.m */; };
+		A313CB71185E1918001D3093 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A313CB6F185E1918001D3093 /* AppDelegate.m */; };
+		A313CB72185E1918001D3093 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A313CB70185E1918001D3093 /* main.m */; };
+		A313CB75185E1971001D3093 /* Shader.m in Sources */ = {isa = PBXBuildFile; fileRef = A313CB74185E1971001D3093 /* Shader.m */; };
+		A313CB7A185E1CE9001D3093 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A313CB78185E1C15001D3093 /* MainMenu.xib */; };
+		A313CB7B185E1E42001D3093 /* Simple.fs in Resources */ = {isa = PBXBuildFile; fileRef = A313CB65185E18F9001D3093 /* Simple.fs */; };
+		A313CB7C185E1E42001D3093 /* Simple.vs in Resources */ = {isa = PBXBuildFile; fileRef = A313CB66185E18F9001D3093 /* Simple.vs */; };
+		A313CB84185E266B001D3093 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = A313CB81185E266B001D3093 /* Queue.m */; };
+		A313CB87185E282D001D3093 /* GLObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A313CB86185E282D001D3093 /* GLObject.m */; };
+		A313CB89185E3411001D3093 /* TestMat4.m in Sources */ = {isa = PBXBuildFile; fileRef = A313CB88185E3411001D3093 /* TestMat4.m */; };
 		A37A607D1847ACF4005CC02C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A37A607C1847ACF4005CC02C /* Cocoa.framework */; };
 		A37A60871847ACF4005CC02C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A37A60851847ACF4005CC02C /* InfoPlist.strings */; };
-		A37A60891847ACF4005CC02C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A37A60881847ACF4005CC02C /* main.m */; };
 		A37A608D1847ACF4005CC02C /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A37A608B1847ACF4005CC02C /* Credits.rtf */; };
-		A37A60901847ACF4005CC02C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A37A608F1847ACF4005CC02C /* AppDelegate.m */; };
-		A37A60931847ACF4005CC02C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A37A60911847ACF4005CC02C /* MainMenu.xib */; };
 		A37A60951847ACF4005CC02C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A37A60941847ACF4005CC02C /* Images.xcassets */; };
 		A37A609C1847ACF4005CC02C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A37A609B1847ACF4005CC02C /* XCTest.framework */; };
 		A37A609D1847ACF4005CC02C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A37A607C1847ACF4005CC02C /* Cocoa.framework */; };
 		A37A60A51847ACF4005CC02C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A37A60A31847ACF4005CC02C /* InfoPlist.strings */; };
 		A37A60A71847ACF4005CC02C /* Golden_TriangleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A37A60A61847ACF4005CC02C /* Golden_TriangleTests.m */; };
 		A37A60B11847AD03005CC02C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A37A60B01847AD03005CC02C /* OpenGL.framework */; };
-		A37A60B41847AD7D005CC02C /* MyOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = A37A60B31847AD7D005CC02C /* MyOpenGLView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,14 +41,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A30CDBB8185800BD0030A085 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
-		A30CDBB9185800BD0030A085 /* Shader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shader.m; sourceTree = "<group>"; };
-		A30CDBBC1858047A0030A085 /* Simple.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Simple.vs; sourceTree = "<group>"; };
-		A30CDBBE1858048D0030A085 /* Simple.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Simple.fs; sourceTree = "<group>"; };
-		A30CDBC2185814400030A085 /* Mat4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mat4.h; sourceTree = "<group>"; };
-		A30CDBC3185814400030A085 /* Mat4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mat4.m; sourceTree = "<group>"; };
-		A30CDBC5185815750030A085 /* TestMat4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestMat4.m; path = "../Golden Triangle/TestMat4.m"; sourceTree = "<group>"; };
 		A313CB58185BCF70001D3093 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		A313CB5F185E18DF001D3093 /* MyOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyOpenGLView.h; path = View/MyOpenGLView.h; sourceTree = "<group>"; };
+		A313CB60185E18DF001D3093 /* MyOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyOpenGLView.m; path = View/MyOpenGLView.m; sourceTree = "<group>"; };
+		A313CB62185E18E9001D3093 /* Mat4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mat4.h; path = Math/Mat4.h; sourceTree = "<group>"; };
+		A313CB63185E18E9001D3093 /* Mat4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Mat4.m; path = Math/Mat4.m; sourceTree = "<group>"; };
+		A313CB65185E18F9001D3093 /* Simple.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Simple.fs; sourceTree = "<group>"; };
+		A313CB66185E18F9001D3093 /* Simple.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Simple.vs; sourceTree = "<group>"; };
+		A313CB6E185E1918001D3093 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A313CB6F185E1918001D3093 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A313CB70185E1918001D3093 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A313CB73185E1971001D3093 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
+		A313CB74185E1971001D3093 /* Shader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shader.m; sourceTree = "<group>"; };
+		A313CB78185E1C15001D3093 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		A313CB80185E266B001D3093 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
+		A313CB81185E266B001D3093 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
+		A313CB85185E282D001D3093 /* GLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLObject.h; sourceTree = "<group>"; };
+		A313CB86185E282D001D3093 /* GLObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLObject.m; sourceTree = "<group>"; };
+		A313CB88185E3411001D3093 /* TestMat4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestMat4.m; path = "Golden Triangle/Tests/TestMat4.m"; sourceTree = SOURCE_ROOT; };
 		A37A60791847ACF4005CC02C /* Golden Triangle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Golden Triangle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A37A607C1847ACF4005CC02C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A37A607F1847ACF4005CC02C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -56,12 +66,8 @@
 		A37A60811847ACF4005CC02C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A37A60841847ACF4005CC02C /* Golden Triangle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Golden Triangle-Info.plist"; sourceTree = "<group>"; };
 		A37A60861847ACF4005CC02C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A37A60881847ACF4005CC02C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A37A608A1847ACF4005CC02C /* Golden Triangle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Golden Triangle-Prefix.pch"; sourceTree = "<group>"; };
 		A37A608C1847ACF4005CC02C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		A37A608E1847ACF4005CC02C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		A37A608F1847ACF4005CC02C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A37A60921847ACF4005CC02C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		A37A60941847ACF4005CC02C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A37A609A1847ACF4005CC02C /* Golden TriangleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Golden TriangleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A37A609B1847ACF4005CC02C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -69,8 +75,6 @@
 		A37A60A41847ACF4005CC02C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A37A60A61847ACF4005CC02C /* Golden_TriangleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Golden_TriangleTests.m; sourceTree = "<group>"; };
 		A37A60B01847AD03005CC02C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		A37A60B21847AD7D005CC02C /* MyOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyOpenGLView.h; path = ../MyOpenGLView.h; sourceTree = "<group>"; };
-		A37A60B31847AD7D005CC02C /* MyOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyOpenGLView.m; path = ../MyOpenGLView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,27 +103,20 @@
 		A30CDBB7185800BD0030A085 /* Shader */ = {
 			isa = PBXGroup;
 			children = (
-				A30CDBB8185800BD0030A085 /* Shader.h */,
-				A30CDBB9185800BD0030A085 /* Shader.m */,
+				A313CB73185E1971001D3093 /* Shader.h */,
+				A313CB74185E1971001D3093 /* Shader.m */,
+				A313CB65185E18F9001D3093 /* Simple.fs */,
+				A313CB66185E18F9001D3093 /* Simple.vs */,
 			);
 			name = Shader;
 			path = "Golden Triangle/Shader";
 			sourceTree = "<group>";
 		};
-		A30CDBBB185804440030A085 /* Simple */ = {
-			isa = PBXGroup;
-			children = (
-				A30CDBBC1858047A0030A085 /* Simple.vs */,
-				A30CDBBE1858048D0030A085 /* Simple.fs */,
-			);
-			name = Simple;
-			sourceTree = "<group>";
-		};
 		A30CDBC7185818E00030A085 /* Math */ = {
 			isa = PBXGroup;
 			children = (
-				A30CDBC2185814400030A085 /* Mat4.h */,
-				A30CDBC3185814400030A085 /* Mat4.m */,
+				A313CB62185E18E9001D3093 /* Mat4.h */,
+				A313CB63185E18E9001D3093 /* Mat4.m */,
 			);
 			name = Math;
 			path = "Golden Triangle";
@@ -128,19 +125,43 @@
 		A313CB5A185C0DAF001D3093 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A37A60B21847AD7D005CC02C /* MyOpenGLView.h */,
-				A37A60B31847AD7D005CC02C /* MyOpenGLView.m */,
+				A313CB5F185E18DF001D3093 /* MyOpenGLView.h */,
+				A313CB60185E18DF001D3093 /* MyOpenGLView.m */,
 			);
 			name = View;
 			path = "Golden Triangle";
 			sourceTree = "<group>";
 		};
+		A313CB6D185E1918001D3093 /* ApplicationDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				A313CB6E185E1918001D3093 /* AppDelegate.h */,
+				A313CB6F185E1918001D3093 /* AppDelegate.m */,
+				A313CB70185E1918001D3093 /* main.m */,
+			);
+			name = ApplicationDelegate;
+			path = "Golden Triangle/ApplicationDelegate";
+			sourceTree = "<group>";
+		};
+		A313CB7D185E266B001D3093 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A313CB85185E282D001D3093 /* GLObject.h */,
+				A313CB86185E282D001D3093 /* GLObject.m */,
+				A313CB80185E266B001D3093 /* Queue.h */,
+				A313CB81185E266B001D3093 /* Queue.m */,
+			);
+			name = Utils;
+			path = "Golden Triangle/Utils";
+			sourceTree = "<group>";
+		};
 		A37A60701847ACF3005CC02C = {
 			isa = PBXGroup;
 			children = (
+				A313CB7D185E266B001D3093 /* Utils */,
+				A313CB6D185E1918001D3093 /* ApplicationDelegate */,
 				A313CB5A185C0DAF001D3093 /* View */,
 				A30CDBC7185818E00030A085 /* Math */,
-				A30CDBBB185804440030A085 /* Simple */,
 				A30CDBB7185800BD0030A085 /* Shader */,
 				A37A60821847ACF4005CC02C /* Golden Triangle */,
 				A37A60A01847ACF4005CC02C /* Golden TriangleTests */,
@@ -183,9 +204,6 @@
 		A37A60821847ACF4005CC02C /* Golden Triangle */ = {
 			isa = PBXGroup;
 			children = (
-				A37A608E1847ACF4005CC02C /* AppDelegate.h */,
-				A37A608F1847ACF4005CC02C /* AppDelegate.m */,
-				A37A60911847ACF4005CC02C /* MainMenu.xib */,
 				A37A60941847ACF4005CC02C /* Images.xcassets */,
 				A37A60831847ACF4005CC02C /* Supporting Files */,
 			);
@@ -195,9 +213,9 @@
 		A37A60831847ACF4005CC02C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A313CB78185E1C15001D3093 /* MainMenu.xib */,
 				A37A60841847ACF4005CC02C /* Golden Triangle-Info.plist */,
 				A37A60851847ACF4005CC02C /* InfoPlist.strings */,
-				A37A60881847ACF4005CC02C /* main.m */,
 				A37A608A1847ACF4005CC02C /* Golden Triangle-Prefix.pch */,
 				A37A608B1847ACF4005CC02C /* Credits.rtf */,
 			);
@@ -207,7 +225,7 @@
 		A37A60A01847ACF4005CC02C /* Golden TriangleTests */ = {
 			isa = PBXGroup;
 			children = (
-				A30CDBC5185815750030A085 /* TestMat4.m */,
+				A313CB88185E3411001D3093 /* TestMat4.m */,
 				A37A60A61847ACF4005CC02C /* Golden_TriangleTests.m */,
 				A37A60A11847ACF4005CC02C /* Supporting Files */,
 			);
@@ -299,12 +317,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A30CDBC0185812560030A085 /* Simple.vs in Resources */,
-				A30CDBC1185812560030A085 /* Simple.fs in Resources */,
+				A313CB7B185E1E42001D3093 /* Simple.fs in Resources */,
+				A313CB7C185E1E42001D3093 /* Simple.vs in Resources */,
+				A313CB7A185E1CE9001D3093 /* MainMenu.xib in Resources */,
 				A37A60871847ACF4005CC02C /* InfoPlist.strings in Resources */,
 				A37A60951847ACF4005CC02C /* Images.xcassets in Resources */,
 				A37A608D1847ACF4005CC02C /* Credits.rtf in Resources */,
-				A37A60931847ACF4005CC02C /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,13 +341,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A37A60901847ACF4005CC02C /* AppDelegate.m in Sources */,
-				A30CDBBD1858047A0030A085 /* Simple.vs in Sources */,
-				A37A60891847ACF4005CC02C /* main.m in Sources */,
-				A30CDBBA185800BD0030A085 /* Shader.m in Sources */,
-				A30CDBBF1858048D0030A085 /* Simple.fs in Sources */,
-				A37A60B41847AD7D005CC02C /* MyOpenGLView.m in Sources */,
-				A30CDBC4185814400030A085 /* Mat4.m in Sources */,
+				A313CB72185E1918001D3093 /* main.m in Sources */,
+				A313CB61185E18DF001D3093 /* MyOpenGLView.m in Sources */,
+				A313CB87185E282D001D3093 /* GLObject.m in Sources */,
+				A313CB75185E1971001D3093 /* Shader.m in Sources */,
+				A313CB84185E266B001D3093 /* Queue.m in Sources */,
+				A313CB71185E1918001D3093 /* AppDelegate.m in Sources */,
+				A313CB64185E18E9001D3093 /* Mat4.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,7 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A37A60A71847ACF4005CC02C /* Golden_TriangleTests.m in Sources */,
-				A30CDBC6185815750030A085 /* TestMat4.m in Sources */,
+				A313CB89185E3411001D3093 /* TestMat4.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,14 +385,6 @@
 				A37A608C1847ACF4005CC02C /* en */,
 			);
 			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		A37A60911847ACF4005CC02C /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A37A60921847ACF4005CC02C /* Base */,
-			);
-			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 		A37A60A31847ACF4005CC02C /* InfoPlist.strings */ = {
@@ -419,9 +429,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.8;
 			};
 			name = Debug;
 		};
@@ -451,8 +461,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				SDKROOT = macosx;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx10.8;
 			};
 			name = Release;
 		};
@@ -464,6 +474,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Golden Triangle/Golden Triangle-Prefix.pch";
 				INFOPLIST_FILE = "Golden Triangle/Golden Triangle-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -477,6 +488,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Golden Triangle/Golden Triangle-Prefix.pch";
 				INFOPLIST_FILE = "Golden Triangle/Golden Triangle-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

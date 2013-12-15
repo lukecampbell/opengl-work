@@ -14,11 +14,12 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-
+    NSLog(@"Application launched");
 }
 
 - (BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
     return YES;
 }
+
 
 @end

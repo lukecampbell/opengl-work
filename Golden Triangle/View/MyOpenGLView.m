@@ -7,8 +7,6 @@
 //
 
 #import "MyOpenGLView.h"
-#import "Mat4.h"
-#include <OpenGL/gl.h>
 
 #pragma mark Vertex Buffers
 
@@ -73,8 +71,17 @@ static GLfloat color_buffer[] = {
 
 /* Handles the mouseDown event in the context */
 - (void)mouseDown:(NSEvent *)theEvent {
-
+    NSLog(@"Mouse Down Event");
+    _xDown = [theEvent locationInWindow].x;
+    _yDown = [theEvent locationInWindow].y;
 }
+
+- (void) mouseDragged: (NSEvent *) theEvent {
+    NSPoint eventLocation = [theEvent locationInWindow];
+    NSLog(@"Dragged x:%f", eventLocation.x - _xDown);
+}
+
+
 
 - (id) initWithFrame:(NSRect)frameRect {
     self = [super initWithFrame:frameRect];
@@ -100,50 +107,25 @@ static GLfloat color_buffer[] = {
 }
 
 - (void) drawAnObject: (NSRect) bounds {
-    //glColor3f(1.0f, 0.85f, 0.35f);
-    GLuint vbuffer;
-    GLint vpos;
-    GLint vcolor;
-    GLint umvmatAttr;
-    GLint upmatAttr;
-    Mat4 *uMVMatrix = [[Mat4 alloc] init];
-    Mat4 *uPMatrix = [[Mat4 alloc] init];
-    GLfloat translation[] = { 0., 0., -7.0};
+    GLObject *square = [GLObject new];
+    [square setArrays: 4
+          vertexArray: vertex_buffer
+           colorArray: color_buffer];
+    Mat4 *camera = [Mat4 new];
+    [camera identity];
+    [camera translateX: 0
+                     Y: 0
+                     Z: -7];
+    Mat4 *perspective = [Mat4 new];
+    [perspective identity];
+    [perspective perspective: 45
+                      aspect: (bounds.size.width / bounds.size.height)
+                        near: 0.1
+                         far: 100.0];
 
-    /* -- Set vertex for aVertexPosition -- */
-    glGenBuffers(1, &vbuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, vbuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_buffer), vertex_buffer, GL_STATIC_DRAW);
-    vpos = [shader getAttribLocation: "aVertexPosition"];
-    glEnableVertexAttribArray(vpos);
-
-    glVertexAttribPointer(vpos, 3, GL_FLOAT, false, 0, 0);
-    
-    /* -- Set color for aVertexColor -- */
-    glGenBuffers(1, &vbuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, vbuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(color_buffer), color_buffer, GL_STATIC_DRAW);
-    vcolor = [shader getAttribLocation: "aVertexColor"];
-
-    glVertexAttribPointer(vcolor, 4, GL_FLOAT, false, 0, 0);
-    glEnableVertexAttribArray(vcolor);
-
-    /* -- Set uniform matrices -- */
-    umvmatAttr = [shader getUniformLocation: "uMVMatrix"];
-    upmatAttr = [shader getUniformLocation: "uPMatrix"];
-
-    [uPMatrix perspective: 45.0
-                   aspect: bounds.size.width / bounds.size.height
-                     near: 0.1
-                      far: 100.0];
-
-    [uMVMatrix identity];
-    [uMVMatrix translate: translation];
-    glUniformMatrix4fv(umvmatAttr, 1, false, uMVMatrix.floats);
-    glUniformMatrix4fv(upmatAttr, 1, false, uPMatrix.floats);
-
-
-    glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+    [square drawUsingShader: shader
+               cameraMatrix: camera
+                perspective: perspective];
 }
 @end
 

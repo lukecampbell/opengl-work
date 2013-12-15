@@ -113,6 +113,13 @@
     mat[14] += mat[15] * z;
 }
 
+- (void) translateX: (GLfloat) x
+                  Y: (GLfloat) y
+                  Z: (GLfloat) z {
+    GLfloat v[3] = {x, y, z};
+    [self translate: v];
+}
+
 - (void) rotateX: (GLfloat) rad {
     GLfloat t[8] = {
         mat[4], mat[5] , mat[6] , mat[7] ,
@@ -169,6 +176,32 @@
     mat[13] = 0;
     mat[14] = (2 * far * near) * nf;
     mat[15] = 0;
+}
+
+- (void) dot: (Mat4*) other {
+    GLfloat t[16];
+    GLfloat *o = other.floats;
+    memcpy(t, mat, sizeof(GLfloat) * 16);
+    mat[0] = t[0] * o[0] + t[1] * o[4] + t[2] * o[8]  + t[3] * o[12];
+    mat[1] = t[0] * o[1] + t[1] * o[5] + t[2] * o[9]  + t[3] * o[13];
+    mat[2] = t[0] * o[2] + t[1] * o[6] + t[2] * o[10] + t[3] * o[14];
+    mat[3] = t[0] * o[3] + t[1] * o[7] + t[2] * o[11] + t[3] * o[15];
+
+    mat[4] = t[4] * o[0] + t[5] * o[4] + t[6] * o[8]  + t[7] * o[12];
+    mat[5] = t[4] * o[1] + t[5] * o[5] + t[6] * o[9]  + t[7] * o[13];
+    mat[6] = t[4] * o[2] + t[5] * o[6] + t[6] * o[10] + t[7] * o[14];
+    mat[7] = t[4] * o[3] + t[5] * o[7] + t[6] * o[11] + t[7] * o[15];
+    
+    mat[8]  = t[8] * o[0] + t[9] * o[4] + t[10] * o[8]  + t[11] * o[12];
+    mat[9]  = t[8] * o[1] + t[9] * o[5] + t[10] * o[9]  + t[11] * o[13];
+    mat[10] = t[8] * o[2] + t[9] * o[6] + t[10] * o[10] + t[11] * o[14];
+    mat[11] = t[8] * o[3] + t[9] * o[7] + t[10] * o[11] + t[11] * o[15];
+    
+    mat[12] = t[12] * o[0] + t[13] * o[4] + t[14] * o[8]  + t[15] * o[12];
+    mat[13] = t[12] * o[1] + t[13] * o[5] + t[14] * o[9]  + t[15] * o[13];
+    mat[14] = t[12] * o[2] + t[13] * o[6] + t[14] * o[10] + t[15] * o[14];
+    mat[15] = t[12] * o[3] + t[13] * o[7] + t[14] * o[11] + t[15] * o[15];
+
 }
 
 

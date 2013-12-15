@@ -6,9 +6,11 @@
 //  Copyright (c) 2013 Lucas Campbell. All rights reserved.
 //
 
-#import "Shader/Shader.h"
-#import "Utils/Queue.h"
+#import "Shader.h"
+#import "Mat4.h"
+#import "GLObject.h"
 #import <Cocoa/Cocoa.h>
+#import <OpenGL/gl.h>
 
 
 @interface MyOpenGLView : NSOpenGLView
@@ -17,7 +19,6 @@
        BOOL initialized;
        NSArray *gl_extensions; 
        Shader *shader;
-       Queue *cameraInstructions;
 }
 
 @property CGFloat xDown;
