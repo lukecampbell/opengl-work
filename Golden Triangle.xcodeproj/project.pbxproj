@@ -19,6 +19,7 @@
 		A313CB84185E266B001D3093 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = A313CB81185E266B001D3093 /* Queue.m */; };
 		A313CB87185E282D001D3093 /* GLObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A313CB86185E282D001D3093 /* GLObject.m */; };
 		A313CB89185E3411001D3093 /* TestMat4.m in Sources */ = {isa = PBXBuildFile; fileRef = A313CB88185E3411001D3093 /* TestMat4.m */; };
+		A33414781866256A00B10BC4 /* libm.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A33414771866256A00B10BC4 /* libm.dylib */; };
 		A37A607D1847ACF4005CC02C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A37A607C1847ACF4005CC02C /* Cocoa.framework */; };
 		A37A60871847ACF4005CC02C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A37A60851847ACF4005CC02C /* InfoPlist.strings */; };
 		A37A608D1847ACF4005CC02C /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A37A608B1847ACF4005CC02C /* Credits.rtf */; };
@@ -59,6 +60,8 @@
 		A313CB85185E282D001D3093 /* GLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLObject.h; sourceTree = "<group>"; };
 		A313CB86185E282D001D3093 /* GLObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLObject.m; sourceTree = "<group>"; };
 		A313CB88185E3411001D3093 /* TestMat4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestMat4.m; path = "Golden Triangle/Tests/TestMat4.m"; sourceTree = SOURCE_ROOT; };
+		A33414751866255300B10BC4 /* libmathCommon.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmathCommon.dylib; path = usr/lib/system/libmathCommon.dylib; sourceTree = SDKROOT; };
+		A33414771866256A00B10BC4 /* libm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libm.dylib; path = usr/lib/libm.dylib; sourceTree = SDKROOT; };
 		A37A60791847ACF4005CC02C /* Golden Triangle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Golden Triangle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A37A607C1847ACF4005CC02C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A37A607F1847ACF4005CC02C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -82,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A33414781866256A00B10BC4 /* libm.dylib in Frameworks */,
 				A313CB59185BCF70001D3093 /* GLUT.framework in Frameworks */,
 				A37A60B11847AD03005CC02C /* OpenGL.framework in Frameworks */,
 				A37A607D1847ACF4005CC02C /* Cocoa.framework in Frameworks */,
@@ -182,6 +186,8 @@
 		A37A607B1847ACF4005CC02C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A33414771866256A00B10BC4 /* libm.dylib */,
+				A33414751866255300B10BC4 /* libmathCommon.dylib */,
 				A313CB58185BCF70001D3093 /* GLUT.framework */,
 				A37A60B01847AD03005CC02C /* OpenGL.framework */,
 				A37A607C1847ACF4005CC02C /* Cocoa.framework */,
@@ -474,6 +480,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Golden Triangle/Golden Triangle-Prefix.pch";
 				INFOPLIST_FILE = "Golden Triangle/Golden Triangle-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -488,6 +498,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Golden Triangle/Golden Triangle-Prefix.pch";
 				INFOPLIST_FILE = "Golden Triangle/Golden Triangle-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

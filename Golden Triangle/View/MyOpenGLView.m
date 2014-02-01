@@ -10,27 +10,44 @@
 
 #pragma mark Vertex Buffers
 
-static GLfloat vertex_buffer[] = {
-    -1.0, -1.0, 0.0,
-    -1.0,  1.0, 0.0,
-     1.0, -1.0, 0.0,
-     1.0,  1.0, 0.0
+typedef struct _VertexObject {
+    GLfloat *vertex_pos;
+    GLfloat *vertex_color;
+} VertexObject;
+
+GLfloat vertex_buffer[] = {
+    // Front face
+    -1, -1, 1,
+    -1,  1, 1,
+     1, -1, 1,
+     1,  1, 1,
+
+    // Back face
+    -1, -1,  1,
+    -1,  1,  1,
+     1,  1,  1,
+     1, -1, -1
 };
 
-static GLfloat color_buffer[] = {
-    1., 0., 0., 0.,
-    1., 1., 1., 1.,
-    1., 1., 1., 1.,
-    1., 0., 0., 1.
+GLfloat vertex_colors[] = {
+    1, 0, 0, 1,
+    1, 0, 0, 1,
+    1, 0, 0, 1,
+    1, 0, 0, 1,
+
+    0, 0, 1, 1,
+    0, 0, 1, 1,
+    0, 0, 1, 1,
+    0, 0, 1, 1
 };
+
+
+
+
 
 
 #pragma mark GL Drawing
 
-/*
- * void drawAnObject(void)
- * Renders the scene using GL
- */
 
 @implementation MyOpenGLView
 
@@ -79,6 +96,16 @@ static GLfloat color_buffer[] = {
 - (void) mouseDragged: (NSEvent *) theEvent {
     NSPoint eventLocation = [theEvent locationInWindow];
     NSLog(@"Dragged x:%f", eventLocation.x - _xDown);
+    GLfloat x = eventLocation.x - _xDown;
+    GLfloat y = eventLocation.y - _yDown;
+    GLfloat mag = sqrtf(x*x + y*y);
+    GLfloat xn = x / mag;
+    GLfloat yn = y / mag;
+    GLfloat vec[] = {xn, yn, 0};
+    GLfloat theta = mag * M_PI / (180 * 180);
+    [self drawAnObject:self.frame withRotationTheta:theta withVector:vec];
+    glFlush();
+
 }
 
 
@@ -107,16 +134,35 @@ static GLfloat color_buffer[] = {
 }
 
 - (void) drawAnObject: (NSRect) bounds {
+   [self drawAnObject: bounds
+    withRotationTheta: 0.0
+           withVector: NULL];
+}
+
+
+
+- (void) drawAnObject: (NSRect) bounds 
+    withRotationTheta: (GLfloat) theta
+           withVector: (GLfloat*) vec3
+{
     GLObject *square = [GLObject new];
     [square setArrays: 4
           vertexArray: vertex_buffer
-           colorArray: color_buffer];
+           colorArray: vertex_colors];
     Mat4 *camera = [Mat4 new];
     [camera identity];
-    [camera rotateXdeg: 45];
     [camera translateX: 0
-                     Y: -2
+                     Y: 0
                      Z: -7];
+    if(theta > 0 && vec3 != NULL) {
+        NSLog(@"Rotating");
+        [camera rotate: theta
+                  axis: vec3];
+    } else {
+        GLfloat example[] = {1, 1, 0};
+        [camera rotate: M_PI / 4
+                  axis: example];
+    }
     Mat4 *perspective = [Mat4 new];
     [perspective identity];
     [perspective perspective: 45

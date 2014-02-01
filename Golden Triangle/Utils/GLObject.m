@@ -88,12 +88,6 @@
     glUniformMatrix4fv(uniform, 1, false, pMatrix.floats);
 
     glDrawArrays(GL_TRIANGLE_STRIP, 0, points);
- }
-
-
-
-
-    
-
+}
 
 @end

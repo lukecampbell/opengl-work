@@ -29,8 +29,8 @@
 - (void) translateX: (GLfloat) x
                   Y: (GLfloat) y
                   Z: (GLfloat) z;
-- (void) rotateX: (GLfloat) rad;
-- (void) rotateXdeg: (GLfloat) deg;
+- (void) rotate: (GLfloat) rad
+           axis: (GLfloat *) axis;
 - (BOOL) nearEqual: (Mat4*) other;
 - (void) dot: (Mat4*) other;
 

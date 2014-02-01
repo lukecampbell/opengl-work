@@ -30,5 +30,8 @@
 - (void) drawRect:(NSRect) bounds;
 - (void) initGLExtensions;
 - (void) initShaders;
+- (void) drawAnObject: (NSRect) bounds 
+    withRotationTheta: (GLfloat) theta
+           withVector: (GLfloat*) vec3;
 - (void) drawAnObject: (NSRect) bounds;
 @end
